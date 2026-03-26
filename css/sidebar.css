@@ -1,0 +1,39 @@
+.sidebar {
+    width: 260px;
+    background-color: white;
+    height: calc(100vh - 70px);
+    position: fixed;
+    top: 70px;
+    left: 0;
+    border-right: 1px solid #e5e7eb;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Scrollable if skills list gets too long */
+}
+
+.sidebar h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin: 0 0 15px 0;
+    letter-spacing: 1px;
+}
+
+.sidebar-section { margin-bottom: 30px; }
+
+.skill-filters { display: flex; flex-direction: column; gap: 5px; }
+
+.filter-btn {
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #4b5563;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover { background: #f3f4f6; color: #111827; }
+.filter-btn.active { background: #e0f2fe; color: #0369a1; font-weight: 600; }

@@ -1,0 +1,398 @@
+/* General Reset */
+html {
+    scroll-behavior: smooth;
+}
+body {
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Better than 'height' for scrolling */
+    margin: 0;
+
+    /* Typography */
+    font-family: 'Inter', sans-serif; /* Only one declaration needed */
+
+    /* Background */
+    background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 100%);
+    background-attachment: fixed; /* Keeps the gradient still while scrolling */
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Pushes logo to left, links to right */
+    align-items: center;
+    padding: 20px 50px;
+    background-color: white;
+    width: 100%;
+    position: fixed; /* Stays at the top when you scroll */
+    top: 0;
+    z-index: 1000;   /* Ensures it stays "on top" of other elements */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-sizing: border-box;
+    backdrop-filter: blur(10px) grayscale(50%);
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 20px;
+    color: #007aff;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none; /* Removes the bullet points */
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #374151;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #007aff;
+}
+
+main {
+    flex: 1; /* Tells the main content to take up all available space */
+    display: flex;
+    flex-direction: column; /* Stack hero and card vertically */
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px; /* Pushes the card down so it doesn't hide under the Navbar */
+    width: 100%;
+    max-width: 1200px; /* Limit width on large screens */
+    padding: 0 20px; /* Add side padding */
+    box-sizing: border-box;
+}
+
+.footer {
+    margin-top: 20px; /* Pushes the footer away from the card */
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+/* The Card Container */
+.card {
+    background-color: white;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    text-align: center;
+    max-width: 350px;
+    width: 100%; /* Add this for responsiveness */
+    border: 1px solid #e5e7eb;
+    /* Optional: box-sizing ensures padding doesn't add to the width */
+    box-sizing: border-box;
+    transition: 0.2s all ease;
+    animation-delay: 0.3s;
+    opacity: 0; /* Keeps it hidden until the animation starts */
+}
+
+.card h1 {
+    margin: 15px 0 5px 0; /* Sets top, right, bottom, left margins */
+    font-size: 24px; /* Sets the size of the heading text */
+    color: #111827; /* Sets text color to very dark gray */
+}
+
+.card:hover {
+    background-color: lightblue;
+    transform: translateY(-2px);
+}
+
+.title {
+    color: #007aff;  /* Sets text color to brand blue */
+    font-weight: 600; /* Makes the text semi-bold */
+    margin-bottom: 15px; /* Adds space below the title */
+    font-size: 14px; /* Sets a smaller font size */
+    text-transform: uppercase; /* Converts text to all uppercase */
+    letter-spacing: 1px; /* Increases space between characters */
+}
+
+.description {
+    color: #6b7280; /* Sets text color to lighter gray */
+    font-size: 15px; /* Sets font size */
+    line-height: 1.5; /* Increases space between lines of text */
+}
+
+/* Styling the Image */
+.profile-img {
+    width: 100px; /* Sets image width */
+    height: 100px; /* Sets image height */
+    border-radius: 50%; /* Makes the image a perfect circle */
+    border: 3px solid #007aff; /* Adds a blue border around the image */
+}
+
+.links {
+    display: flex; /* Enables Flexbox for link container */
+    flex-direction: column; /* Stacks items vertically */
+    flex-wrap: wrap; /* Allows items to wrap if needed */
+    gap: 30px;              /* Adds space between flex items */
+    justify-content: center; /* Centers items along the main axis */
+    margin-top: 20px; /* Adds space above the links container */
+}
+
+/* This targets the buttons AND their link states all at once */
+.btn, .btn:link, .btn:visited {
+    display: inline-block; /* Allows setting width/height/padding on inline element */
+    margin: 5px; /* Adds margin around the button */
+    margin-top: 15px; /* Overrides top margin to be larger */
+    padding: 10px 20px; /* Adds padding inside the button */
+    background-color: #007aff; /* Sets button background color */
+    color: white; /* Sets text color to white */
+    text-decoration: none; /* Removes underline from links */
+    border-radius: 8px; /* Rounds button corners */
+    font-weight: bold; /* Makes button text bold */
+    transition: all 0.3s ease; /* Smooths out hover effects */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darkens background on hover */
+    transform: translateY(-2px); /* Moves button slightly up */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Adds shadow on hover */
+}
+
+.btn:active {
+    background-color: #003d80; /* Sets darkest blue on click */
+    transform: translateY(0);   /* Returns button to original position */
+    box-shadow: inset 0 3px 5px rgba(0,0,0,0.2); /* Adds inner shadow for pressed effect */
+}
+
+.section-title {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #9ca3af; /* Light gray */
+    margin-top: 30px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;       /* Allows tags to go to next line if needed */
+    justify-content: center;
+    gap: 8px;              /* Space between the tags */
+}
+
+.skill-tag {
+    background-color: #e0f2fe;
+    color: #007aff;
+    padding: 6px 12px;
+    border-radius: 20px;   /* "Pill" shape */
+    font-size: 13px;
+    font-weight: 500;
+    cursor: default;
+    transition: all 0.2s ease; /* This makes the hover movement smooth */
+}
+
+.skill-tag:hover {
+    background-color: #e0f2f0;
+    transform: translateY(-2px); /* Moves button slightly up */
+}
+
+/* --- Hero Section Styles --- */
+.hero {
+    text-align: center;
+    margin-bottom: 60px; /* Space between hero and card */
+    max-width: 800px;
+}
+
+.hero-subtitle {
+    color: #007aff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.hero-title {
+    font-size: 48px; /* Big headline */
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 20px 0;
+    line-height: 1.1;
+}
+
+.hero-description {
+    font-size: 18px;
+    color: #4b5563;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 30px auto; /* Center the text block */
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.hero-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.btn-secondary:hover {
+    background-color: #f9fafb;
+    color: #111827;
+    border-color: #9ca3af;
+}
+
+.projects-section {
+    margin-top: 80px;
+    padding-bottom: 100px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.grid-title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #111827;
+}
+
+.project-grid {
+    display: grid;
+    /* Creates 3 columns of equal width (1fr = 1 fraction) */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.grid-item {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover {
+    transform: scale(1.05);
+}
+
+.grid-icon {
+    font-size: 30px;
+    color: #007aff;
+    margin-bottom: 15px;
+}
+
+.experience-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 60px auto 100px auto;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Space between jobs */
+    padding: 0 20px;
+}
+
+.timeline-item {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    border-left: 5px solid #007aff; /* The vertical line effect */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.timeline-item:hover {
+    transform: translateX(10px); /* Slides slightly to the right on hover */
+}
+
+.timeline-date {
+    color: #007aff;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.timeline-content h3 {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+    color: #111827;
+}
+
+.timeline-content h4 {
+    margin: 0 0 15px 0;
+    font-size: 15px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.timeline-content ul {
+    margin: 0;
+    padding-left: 20px;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+.timeline-content li {
+    margin-bottom: 8px;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero, .card {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Targets all your main sections */
+section, footer {
+    scroll-margin-top: 120px; /* Adjust this number based on how tall your navbar is */
+}
+
+@media(max-width: 768px) {
+    .navbar {
+        background-color: gray;
+        flex-direction: column;
+    }
+
+    .hero-title {
+        font-size: 32px; /* Smaller font for mobile */
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-btn {
+            width: 100%;       /* Makes buttons equal width on mobile */
+            max-width: 250px;  /* Keeps them from getting TOO wide */
+            text-align: center;
+        }
+}
