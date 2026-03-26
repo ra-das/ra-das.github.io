@@ -473,7 +473,14 @@ a {
         padding: 20px 18px 32px;
     }
 
-    .sidebar,
+    .sidebar {
+        width: auto;
+        max-height: none;
+        position: static;
+        overflow: visible;
+        margin-bottom: 20px;
+    }
+
     .resizer {
         display: none;
     }
@@ -488,6 +495,11 @@ a {
 }
 
 @media (max-width: 760px) {
+    .sidebar {
+        padding: 22px 20px;
+        border-radius: 20px;
+    }
+
     .navbar {
         height: auto;
         padding: 16px 18px;
