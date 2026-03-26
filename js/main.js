@@ -1,45 +1,44 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Select the sidebar and the resizer handle elements
     const sidebar = document.querySelector('.sidebar');
     const resizer = document.querySelector('.resizer');
 
-    // Variable to track if the user is currently dragging the resizer
+    if (!sidebar || !resizer) {
+        return;
+    }
+
     let isResizing = false;
 
-    // Event listener for when the user presses the mouse button down on the resizer
-    resizer.addEventListener('mousedown', function(e) {
-        isResizing = true; // Start resizing mode
-        document.body.style.cursor = 'col-resize'; // Change the cursor to a resize icon globally
+    resizer.addEventListener('mousedown', function() {
+        if (window.innerWidth <= 1024) {
+            return;
+        }
 
-        // Prevent text selection while dragging to avoid accidental highlighting
+        isResizing = true;
+        document.body.style.cursor = 'col-resize';
         document.body.style.userSelect = 'none';
     });
 
-    // Event listener for mouse movement anywhere on the document
     document.addEventListener('mousemove', function(e) {
-        // If we are not currently resizing, do nothing
         if (!isResizing) return;
 
-        // Calculate the new width based on the mouse's X (horizontal) position
-        let newWidth = e.clientX;
+        let newWidth = e.clientX - resizer.getBoundingClientRect().width / 2;
 
-        // Enforce minimum width constraint (250px)
-        if (newWidth < 250) newWidth = 250;
-
-        // Enforce maximum width constraint (600px)
-        if (newWidth > 600) newWidth = 600;
-
-        // Apply the new width to the sidebar element
+        if (newWidth < 260) newWidth = 260;
+        if (newWidth > 520) newWidth = 520;
         sidebar.style.width = newWidth + 'px';
     });
 
-    // Event listener for when the user releases the mouse button
-    document.addEventListener('mouseup', function(e) {
-        // If we were resizing, stop the process
+    document.addEventListener('mouseup', function() {
         if (isResizing) {
-            isResizing = false; // Stop resizing mode
-            document.body.style.cursor = 'default'; // Reset cursor to default arrow
-            document.body.style.userSelect = 'auto'; // Re-enable text selection
+            isResizing = false;
+            document.body.style.cursor = 'default';
+            document.body.style.userSelect = 'auto';
+        }
+    });
+
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 1024) {
+            sidebar.style.removeProperty('width');
         }
     });
 });

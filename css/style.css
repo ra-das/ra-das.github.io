@@ -1,332 +1,533 @@
-/* --- Global Styles --- */
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: #f8fafc;
-    color: #334155;
+:root {
+    --bg: #f4f7fb;
+    --bg-accent: #e9eef8;
+    --surface: rgba(255, 255, 255, 0.8);
+    --surface-strong: #ffffff;
+    --border: rgba(15, 23, 42, 0.08);
+    --text: #162033;
+    --muted: #5c6b80;
+    --soft: #7e8ba0;
+    --accent: #1f6feb;
+    --accent-deep: #0b4fc9;
+    --accent-soft: rgba(31, 111, 235, 0.12);
+    --shadow: 0 20px 45px rgba(28, 41, 61, 0.08);
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 12px;
+}
+
+html {
     scroll-behavior: smooth;
 }
 
-/* --- Top Navbar --- */
+body {
+    margin: 0;
+    font-family: 'Instrument Sans', sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at top left, rgba(31, 111, 235, 0.08), transparent 28%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+}
+
+a {
+    color: inherit;
+}
+
+.skip-link {
+    position: absolute;
+    left: 20px;
+    top: -48px;
+    background: var(--text);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    z-index: 2000;
+}
+
+.skip-link:focus {
+    top: 18px;
+}
+
 .navbar {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
+    z-index: 1000;
+    height: 76px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 40px;
-    box-sizing: border-box;
-    z-index: 1000;
-    border-bottom: 1px solid #e2e8f0;
+    padding: 0 36px;
+    background: rgba(244, 247, 251, 0.78);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
 }
 
-.nav-links { display: flex; list-style: none; gap: 30px; }
-.nav-links a { text-decoration: none; color: #64748b; font-weight: 500; transition: color 0.2s; }
-.nav-links a:hover { color: #0f172a; }
+.logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+}
 
-/* --- App Layout --- */
+.blink {
+    color: var(--accent);
+    animation: blink 1s step-end infinite;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 26px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+    color: var(--text);
+}
+
 .app-container {
     display: flex;
-    margin-top: 70px;
-    min-height: calc(100vh - 70px);
+    align-items: flex-start;
+    gap: 0;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 24px 20px 40px;
 }
 
-/* --- Left Sidebar --- */
 .sidebar {
-    width: 350px; /* RESTORED: Gives the sidebar its strict default width */
-    flex-shrink: 0; /* Prevents the main content from squishing it */
-
-    box-sizing: border-box;
-    height: 100vh;
-    margin: 0;
-
+    width: 340px;
+    flex-shrink: 0;
     position: sticky;
-    top: 0;
+    top: 100px;
+    max-height: calc(100vh - 124px);
     overflow-y: auto;
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    backdrop-filter: blur(14px);
+    box-shadow: var(--shadow);
+    box-sizing: border-box;
+}
 
-    padding: 40px 30px;
+.profile-section {
+    margin-bottom: 28px;
 }
 
 .profile-pic {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%; /* Makes it a circle */
-    object-fit: cover; /* Prevents the image inside from stretching */
-
-    border: 3px solid white;
-    box-shadow: 0 0 12px rgba(0,0,0,0.12); /* Changed to 0 0: This creates a perfectly centered "halo" shadow */
-
-    flex-shrink: 0; /* Forces the browser to never squish this element into an oval */
-    margin-bottom: 15px;
+    width: 112px;
+    height: 112px;
+    border-radius: 28px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 18px;
+    border: 4px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 12px 32px rgba(31, 111, 235, 0.14);
 }
 
-.sidebar h2 { margin: 0; font-size: 20px; color: #0f172a; }
-.sidebar .subtitle { margin: 5px 0 30px 0; color: #64748b; font-size: 14px; }
-.sidebar h3 { font-size: 12px; text-transform: uppercase; color: #94a3b8; margin: 0 0 10px 0; letter-spacing: 1px; }
-.sidebar-section { margin-bottom: 30px;
+.sidebar h2 {
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: -0.04em;
 }
+
+.subtitle {
+    margin: 8px 0 10px;
+    color: var(--accent-deep);
+    font-size: 0.98rem;
+    font-weight: 600;
+}
+
+.sidebar-summary {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.65;
+}
+
+.sidebar-section {
+    margin-bottom: 26px;
+}
+
 .sidebar-section:last-child {
     margin-bottom: 0;
 }
 
-.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.sidebar h3 {
+    margin: 0 0 12px;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--soft);
+}
+
+.skill-tags,
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
 .tag {
-    background-color: #f1f5f9;
-    color: #475569;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 13px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.05);
+    color: #304056;
+    font-size: 0.85rem;
     font-weight: 600;
 }
 
-/* --- Resizer Handle --- */
 .resizer {
-    width: 6px; /* Adjust thickness as you prefer */
-    cursor: ew-resize; /* The left-right drag cursor */
-    background-color: #f1f5f9; /* A subtle grey line */
-
-    /* THE FIX: Match the sidebar's sticky behavior */
-    height: 100vh;
-    position: sticky;
-    top: 0;
-
-    /* Prevent the main content from squishing the drag bar */
+    width: 10px;
+    margin: 0 16px;
     flex-shrink: 0;
-
-    /* Optional: Smooth transition for the hover effect */
+    align-self: stretch;
+    cursor: ew-resize;
+    border-radius: 999px;
+    background:
+        linear-gradient(180deg, rgba(31, 111, 235, 0), rgba(31, 111, 235, 0.24), rgba(31, 111, 235, 0));
     transition: background-color 0.2s ease;
 }
 
-/* Optional: Make it light up blue when you hover over it */
-.resizer:hover, .resizer:active {
-    background-color: #3b82f6;
+.resizer:hover,
+.resizer:active {
+    background:
+        linear-gradient(180deg, rgba(31, 111, 235, 0.08), rgba(31, 111, 235, 0.4), rgba(31, 111, 235, 0.08));
 }
 
-/* --- Main Content --- */
 .main-content {
-    padding: 60px 80px;
     flex: 1;
+    min-width: 0;
+    padding: 12px 12px 24px 28px;
+}
+
+.intro-section {
+    padding: 20px 0 16px;
+}
+
+.eyebrow {
+    margin: 0 0 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--accent-deep);
+    font-size: 0.76rem;
+    font-weight: 700;
+}
+
+.hero-title,
+.section-title,
+.project-header h3,
+.exp-header h3 {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.hero-title {
+    margin: 0;
     max-width: 900px;
-    overflow-y: auto; /* Allow main content to scroll independently */
-    height: calc(100vh - 70px);
+    font-size: clamp(2.6rem, 5vw, 4.8rem);
+    line-height: 1.02;
+    letter-spacing: -0.06em;
 }
 
-.hero-title { font-size: 42px; color: #0f172a; line-height: 1.1; margin-top: 0; margin-bottom: 20px; letter-spacing: -1px; }
-.hero-description { font-size: 18px; color: #475569; line-height: 1.6; margin-bottom: 60px; max-width: 700px; }
-.hero-quote-title {
-    font-size: 48px; /* Massive, attention-grabbing font size */
-    font-weight: 800; /* Extra bold for impact */
-    font-style: italic; /* Keeps the "quote" aesthetic */
-    color: #0f172a; /* Deep, high-contrast slate text */
-    line-height: 1.2;
-
-    border-left: 5px solid #3b82f6; /* Thicker blue accent line */
-    padding-left: 24px; /* Breathing room between the line and text */
-    margin: 0 0 24px 0; /* Space before the description paragraph */
-    letter-spacing: -0.02em; /* Tightens the large text slightly for a modern look */
+.hero-description {
+    max-width: 760px;
+    margin: 22px 0 0;
+    color: var(--muted);
+    font-size: 1.12rem;
+    line-height: 1.8;
 }
 
-.section-title { font-size: 24px; color: #0f172a; margin-bottom: 30px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+.hero-attribution {
+    margin: 14px 0 0;
+    color: var(--soft);
+    font-size: 0.98rem;
+    font-weight: 600;
+}
 
-/* --- Minimal Experience Layout --- */
-.minimal-exp-container {
+.hero-actions,
+.contact-actions {
     display: flex;
-    flex-direction: column;
-    gap: 25px;
-    margin-bottom: 60px;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 28px;
 }
 
-.exp-row {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #e2e8f0;
+.primary-btn,
+.secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
-.exp-row:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+.primary-btn {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 14px 26px rgba(31, 111, 235, 0.22);
+}
+
+.primary-btn:hover,
+.primary-btn:focus-visible {
+    background: var(--accent-deep);
+    transform: translateY(-1px);
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.secondary-btn:hover,
+.secondary-btn:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 22px rgba(18, 30, 48, 0.08);
+}
+
+.hero-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.highlight-card,
+.experience-card,
+.project-card,
+.contact-card {
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+}
+
+.highlight-card {
+    padding: 20px;
+}
+
+.highlight-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--soft);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.highlight-card p {
+    margin: 0;
+    line-height: 1.65;
+    color: #304056;
+}
+
+.content-section {
+    padding-top: 28px;
+    scroll-margin-top: 92px;
+}
+
+.section-title {
+    margin: 0 0 20px;
+    font-size: 2rem;
+    letter-spacing: -0.05em;
+}
+
+.experience-list {
+    display: grid;
+    gap: 18px;
+}
+
+.experience-card {
+    padding: 26px 28px;
 }
 
 .exp-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 5px;
+    gap: 20px;
+    align-items: flex-start;
 }
 
 .exp-header h3 {
     margin: 0;
-    font-size: 18px;
-    color: #0f172a;
+    font-size: 1.35rem;
+    letter-spacing: -0.04em;
 }
 
-.exp-row .date {
-    font-size: 14px;
-    color: #64748b;
-    font-weight: 500;
+.role {
+    margin: 8px 0 0;
+    color: var(--accent-deep);
+    font-weight: 600;
 }
 
-.exp-row .role {
-    margin: 0;
-    font-size: 15px;
-    color: #3b82f6;
-    font-weight: 500;
+.date {
+    white-space: nowrap;
+    color: var(--soft);
+    font-size: 0.95rem;
+    font-weight: 600;
 }
 
-/* --- Detailed Project Cards --- */
+.exp-summary {
+    margin: 16px 0 0;
+    color: var(--muted);
+    line-height: 1.75;
+}
+
 .project-card {
-    background: white;
-    padding: 35px;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    padding: 28px 30px;
+    margin-bottom: 18px;
 }
 
 .project-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 18px;
+    margin-bottom: 12px;
 }
 
 .project-header h3 {
     margin: 0;
-    font-size: 22px;
-    color: #0f172a;
+    font-size: 1.45rem;
+    letter-spacing: -0.04em;
 }
 
 .company-badge {
-    background: #f1f5f9;
-    color: #475569;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.project-details {
-    margin: 20px 0 0 0;
-    padding-left: 20px;
-    color: #475569;
-    line-height: 1.7;
-}
-
-.project-details li {
-    margin-bottom: 12px;
-}
-
-.project-details strong {
-    color: #0f172a; /* Makes the bullet point titles stand out */
+    flex-shrink: 0;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+    font-size: 0.8rem;
+    font-weight: 700;
 }
 
 .project-tags {
-    margin: 12px 0 18px 0; /* 12px space above, 18px space below */
-    display: flex;
-    flex-wrap: wrap; /* Allows tags to flow to the next line if needed */
-    gap: 8px; /* Puts a clean 8px space between each individual tag */
+    margin-bottom: 16px;
 }
 
-/* Ensure sections scroll smoothly beneath the fixed header */
-.content-section { scroll-margin-top: 100px; }
-
-/* --- Logo Animation --- */
-.logo {
-    font-family: monospace; /* Gives it that terminal code look */
-    font-weight: 700;
-    font-size: 24px;
-    color: #0f172a;
+.project-details {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--muted);
+    line-height: 1.75;
 }
 
-.blink {
-    color: #3b82f6; /* Signature blue */
-    animation: blink 1s step-end infinite;
+.project-details li + li {
+    margin-top: 10px;
 }
 
-@keyframes blink {
-    50% { opacity: 0; }
-}
-
-/* --- Contact Section --- */
 .contact-card {
-    background: white;
-    padding: 50px 40px;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-    text-align: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    padding: 34px 30px;
+    text-align: left;
 }
 
 .contact-card p {
-    color: #475569;
-    font-size: 18px;
-    line-height: 1.6;
-    max-width: 600px;
-    margin: 0 auto 30px auto;
+    margin: 0;
+    max-width: 760px;
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 1.05rem;
 }
 
-.contact-btn {
-    display: inline-block;
-    background-color: #3b82f6;
-    color: white;
-    padding: 14px 28px;
-    border-radius: 8px;
-    text-decoration: none;
+.contact-info {
+    margin-top: 20px;
+    color: var(--text);
     font-weight: 600;
-    font-size: 16px;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    margin-bottom: 40px;
 }
 
-.contact-btn:hover {
-    background-color: #2563eb;
-    transform: translateY(-2px);
-    color: white;
-}
-
-.contact-info p {
-    margin: 5px 0;
-    font-size: 15px;
-    font-weight: 500;
-    color: #0f172a;
-}
-
-.contact-info a {
-    display: inline-block;
-    margin-top: 10px;
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.contact-info a:hover {
-    text-decoration: underline;
-}
-
-/* --- Responsive Design --- */
-@media (max-width: 1024px) {
-    .sidebar {
-        display: none; /* Hide sidebar on smaller screens */
+@keyframes blink {
+    50% {
+        opacity: 0;
     }
+}
+
+@media (max-width: 1180px) {
+    .hero-highlights {
+        grid-template-columns: 1fr;
+    }
+
     .main-content {
-        margin-left: 0; /* Remove margin when sidebar is hidden */
-        padding: 40px 20px;
+        padding-left: 20px;
     }
+}
+
+@media (max-width: 1024px) {
+    .app-container {
+        display: block;
+        padding: 20px 18px 32px;
+    }
+
+    .sidebar,
+    .resizer {
+        display: none;
+    }
+
+    .main-content {
+        padding: 0;
+    }
+
     .navbar {
-        padding: 0 20px;
+        padding: 0 18px;
     }
-    /* Optional: Make it scale down gracefully on mobile screens */
-    .hero-quote-title {
-        font-size: 32px;
-        padding-left: 16px;
+}
+
+@media (max-width: 760px) {
+    .navbar {
+        height: auto;
+        padding: 16px 18px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 14px 18px;
+    }
+
+    .hero-title {
+        font-size: 2.4rem;
+    }
+
+    .hero-description,
+    .contact-card p {
+        font-size: 1rem;
+    }
+
+    .experience-card,
+    .project-card,
+    .contact-card,
+    .highlight-card {
+        padding: 22px 20px;
+        border-radius: 20px;
+    }
+
+    .exp-header,
+    .project-header {
+        flex-direction: column;
+    }
+
+    .date {
+        white-space: normal;
+    }
+
+    .section-title {
+        font-size: 1.65rem;
     }
 }
